@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Popup</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- JS -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<style>
+
+      .wrap {
+      padding: 50px 100px 170px 100px;
+      width: 800px;
+      margin: auto;
+          }
+
+      .dropdown
+      padding: 50px 100px 170px 100px;
+      width: 800px;
+      margin: auto;
+
+      .dropdown_2
+      padding: 50px 100px 170px 100px;
+      width: 800px;
+      margin: auto;
+
+</style>
+
+<script>
+
+          function save() {
+
+            let type_var = $('#type').val();
+            let name_var = $('#name').val();
+            let company_var = $('#company').val();
+            let position_var = $('#position').val();
+            let number_var = $('#number').val();
+            let email_var = $('#email').val();
+
+            $.ajax({
+                type: "POST", // POST 방식으로 요청하겠다.
+                url: "/save", // /post라는 url에 요청하겠다.
+                data: {type: type_var, name: name_var, company: company_var, position: position_var, number: number_var, email: email_var}, // 데이터를 주는 방법
+                success: function(response){ // 성공하면
+                  if (response['result'] == 'success') {
+                    alert('Card saved.');
+                    }
+                    }
+                })
+          }
+
+</script>
+
+<body>
+
+    <div class="wrap">
+
+            <select class="form-control">
+
+
+              <option>Category</option>
+              <option>Interior</option>
+              <option>Exterior</option>
+              <option>Furniture</option>
+
+
+            </select>
+
+
+
+            <form>
+
+              <div class="form-group">
+                <label for="type">Type</label>
+                <input type="text" class="form-control" id="type" aria-describedby="emailHelp" placeholder="Type">
+              </div>
+                <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" class="form-control" id="company" placeholder="Company">
+              </div>
+                <div class="form-group">
+                <label for="position">Position</label>
+                <input type="text" class="form-control" id="position" placeholder="Position">
+              </div>
+                <div class="form-group">
+                <label for="number">Number</label>
+                <input type="text" class="form-control" id="number" placeholder="Number">
+              </div>
+                <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email">
+              </div>
+              <button type="button" class="btn btn-primary" onclick="save()">Save
+              </button>
+
+                </form>
+
+    </div>
+
+</body>
+</html>
